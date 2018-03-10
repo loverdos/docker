@@ -15,14 +15,17 @@ RUN sudo apk add \
     ncurses \
     gcc
 
-# install: linuxbrew
 ADD dev-install-linuxbrew.sh $PLAIN_USER_HOME
-RUN dev-install-linuxbrew.sh
-
+ADD dev-install-pyenv.sh $PLAIN_USER_HOME
 ADD dev-append-config.fish $PLAIN_USER_HOME
 ADD dev-append-profile.sh $PLAIN_USER_HOME
 RUN chown.sh dev-install-* dev-append-*
 RUN install-config.sh dev
 
+# install: linuxbrew
+RUN dev-install-linuxbrew.sh
 RUN cmd.sh brew doctor
-RUN cmd.sh brew install wtf youtube-dl 
+RUN cmd.sh brew install wtf youtube-dl
+
+# install: pyenv
+RUN dev-install-pyenv.sh
