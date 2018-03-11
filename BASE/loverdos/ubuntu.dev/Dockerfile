@@ -7,7 +7,8 @@ RUN sudo apt-get install -y \
     vim \
     git darcs mercurial \
     openssl \
-    make cmake autoconf libtool m4 zlib1g
+    build-essential make cmake autoconf libtool m4 zlib1g gcc g++ \
+    rlwrap libreadline-dev zlib1g-dev
 
 # install: linuxbrew
 ADD dev-install-linuxbrew.sh $PLAIN_USER_HOME
