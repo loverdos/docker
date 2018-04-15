@@ -9,14 +9,20 @@ RUN echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/source
 RUN sudo apt-get update \
     && sudo apt-get -y install sbt
 
-# install: scala
-RUN cmd.sh brew install scala
-
 # force update: sbt
 RUN cmd.sh sbt exit
+
+# install: sbt-exrta
+RUN cmd.sh brew install --HEAD paulp/extras/sbtx
+
+# install: scala
+RUN cmd.sh brew install scala
 
 # install: coursier
 RUN cmd.sh brew install --HEAD coursier/formulas/coursier
 
 # install: dotty
 RUN cmd.sh brew install lampepfl/brew/dotty
+
+# install: bloop
+RUN cmd.sh "python (curl -L https://github.com/scalacenter/bloop/releases/download/v1.0.0-M8/install.py | psub)"
