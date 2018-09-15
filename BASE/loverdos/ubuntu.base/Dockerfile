@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 LABEL maintainer Christos KK Loverdos <loverdos@gmail.com>
 
 # An initial, updated image, ready to be used for 
@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Absolutely minimum setup for further installations
 RUN apt-get update \
     && apt-get -y upgrade \
-    && apt-get install -y locales sudo apt-utils apt-transport-https software-properties-common python-software-properties python3-software-properties \
+    && apt-get install -y locales sudo apt-utils apt-transport-https software-properties-common \
     && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 # Add ppa: fish
