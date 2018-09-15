@@ -3,6 +3,12 @@ function have
   type -q $argv[1]
 end
 
+function LOG
+  status --is-interactive; and PRINT_STDERR $argv
+end
+
+alias ty type
+
 # linuxbrew
 set -gx HOMEBREW_NO_ANALYTICS 1
 set -gx PATH ~/.linuxbrew/bin $PATH
@@ -36,6 +42,13 @@ function git-repack
   git repack -ad
   git gc
   du -sh
+end
+
+function github-get-latest-release
+  set -l repo $argv[1]
+  set -l url "https://api.github.com/repos/$repo/releases/latest"
+  LOG $url
+  curl --silent "$url" | jq -r '.tag_name'
 end
 
 # nix
